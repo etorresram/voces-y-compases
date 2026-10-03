@@ -242,7 +242,9 @@ nav.top a{transition:background .2s,color .2s}
 nav.top a.act{background:var(--accent);color:var(--on-accent)}
 nav.top a.hl.act{background:var(--sun);color:#1B1F3B;box-shadow:0 0 0 2px var(--accent)}
 nav.top a.brand{display:flex;align-items:center;gap:9px;padding:2px 12px 2px 2px;margin-right:6px;color:var(--ink);background:none;flex:none}
-nav.top a.brand:hover{background:var(--soft)}
+nav.top a.brand{position:sticky;left:0;z-index:2;background:var(--bg);box-shadow:10px 0 10px -2px var(--bg);border-radius:0}
+nav.top a.brand:hover{background:var(--bg)}
+nav.top a.brand:hover b{color:var(--accent)}
 nav.top a.brand b{margin:0;font-size:1.05rem}
 nav.top a.brand .logo{flex:none;display:block}
 /* móvil */
