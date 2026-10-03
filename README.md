@@ -13,3 +13,9 @@ poesía para jóvenes de colegios nacionales, con un piloto de 6 meses.
 El documento original de la fundadora (`Formas de desarrollo de la ong.docx`)
 no se versiona. La parte legal es un esquema general: verificar con notario y
 contador.
+
+## Plantillas (`plantillas/`)
+Formatos en blanco, sin datos personales, para usar en el piloto:
+- `Ficha_de_evaluacion_de_talentos.docx`: evaluación inicial y final de cada joven.
+- `Autorizacion_madre_padre_tutor.docx`: participación, datos, imagen y salud de menores.
+Revisar con un abogado antes de usar.

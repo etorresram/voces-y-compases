@@ -1,4 +1,7 @@
 .DS_Store
-# Escritos originales de la fundadora (borradores Word personales)
+# Escritos originales y borradores con nombres de personas (no se versionan)
 *.docx
 *.pdf
+# Excepción: plantillas en blanco, sin datos personales
+!plantillas/
+!plantillas/*.docx
