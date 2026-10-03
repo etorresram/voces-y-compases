@@ -44,7 +44,9 @@ section{padding-block:56px}
 
 /* nav */
 nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px}
-nav.top .in{max-width:1280px;margin:auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;align-items:center}
+nav.top .in{max-width:1280px;margin:auto;display:flex;gap:6px;align-items:center}
+nav.top .strip{position:relative;display:flex;gap:6px;align-items:center;flex:1 1 auto;min-width:0;overflow-x:auto;scrollbar-width:none;padding-left:10px;margin-left:2px;border-left:1px solid var(--line)}
+nav.top .strip::-webkit-scrollbar{display:none}
 nav.top b{font-family:var(--f-display);font-weight:800;margin-right:10px;white-space:nowrap}
 nav.top a{white-space:nowrap;text-decoration:none;font-size:.9rem;font-weight:600;color:var(--muted);padding:6px 10px;border-radius:99px}
 nav.top a:hover{background:var(--soft);color:var(--ink)}
@@ -241,9 +243,8 @@ nav.top a.hl:hover{background:var(--sun);color:#1B1F3B;filter:brightness(1.05)}
 nav.top a{transition:background .2s,color .2s}
 nav.top a.act{background:var(--accent);color:var(--on-accent)}
 nav.top a.hl.act{background:var(--sun);color:#1B1F3B;box-shadow:0 0 0 2px var(--accent)}
-nav.top a.brand{display:flex;align-items:center;gap:9px;padding:2px 12px 2px 2px;margin-right:6px;color:var(--ink);background:none;flex:none}
-nav.top a.brand{position:sticky;left:0;z-index:2;background:var(--bg);box-shadow:10px 0 10px -2px var(--bg);border-radius:0}
-nav.top a.brand:hover{background:var(--bg)}
+nav.top a.brand{display:flex;align-items:center;gap:9px;padding:2px 12px 2px 2px;margin-right:2px;color:var(--ink);background:none;flex:none}
+nav.top a.brand:hover{background:none}
 nav.top a.brand:hover b{color:var(--accent)}
 nav.top a.brand b{margin:0;font-size:1.05rem}
 nav.top a.brand .logo{flex:none;display:block}
@@ -303,9 +304,7 @@ html{-webkit-text-size-adjust:100%}
 
 <button class="mus" id="mus" aria-pressed="false" aria-label="Activar música criolla instrumental suave"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3v11.3A3.5 3.5 0 1010.5 17V8h6V3z"/></svg><span class="lbl">Música</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
 <nav class="top"><div class="in">
-  <a class="brand" href="#inicio" aria-label="Voces y Compases, ir al inicio"><svg class="logo" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#2B2F77"/><circle cx="25" cy="15" r="9" fill="#F2A900"/><circle cx="25" cy="15" r="12" fill="none" stroke="#C4306B" stroke-width="1.6" stroke-dasharray="1.5 3.2" stroke-linecap="round"/><ellipse cx="14.5" cy="28" rx="5.4" ry="3.8" transform="rotate(-20 14.5 28)" fill="#fff"/><rect x="18.4" y="12" width="2.4" height="16.6" rx="1.2" fill="#fff"/><path d="M20.8 12 q7 1.2 6 8.2 q-2.2-4.2-6-4.6z" fill="#fff"/></svg><b>Voces y Compases</b></a>
-  <a href="#documentos" class="hl">Descargar documentos</a><a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#ingresos">Ingresos</a><a href="#publico">Fondos públicos</a><a href="#arranque">Arranque</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a>
-</div></nav>
+  <a class="brand" href="#inicio" aria-label="Voces y Compases, ir al inicio"><svg class="logo" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#2B2F77"/><circle cx="25" cy="15" r="9" fill="#F2A900"/><circle cx="25" cy="15" r="12" fill="none" stroke="#C4306B" stroke-width="1.6" stroke-dasharray="1.5 3.2" stroke-linecap="round"/><ellipse cx="14.5" cy="28" rx="5.4" ry="3.8" transform="rotate(-20 14.5 28)" fill="#fff"/><rect x="18.4" y="12" width="2.4" height="16.6" rx="1.2" fill="#fff"/><path d="M20.8 12 q7 1.2 6 8.2 q-2.2-4.2-6-4.6z" fill="#fff"/></svg><b>Voces y Compases</b></a><div class="strip"><a href="#documentos" class="hl">Descargar documentos</a><a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#ingresos">Ingresos</a><a href="#publico">Fondos públicos</a><a href="#arranque">Arranque</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a></div></div></nav>
 
 <header class="hero" id="inicio"><div class="wrap">
   <div class="txt">
@@ -747,7 +746,7 @@ document.querySelectorAll('table').forEach(t=>{const h=[...t.querySelectorAll('t
 function u(){const n=+f.value;o.textContent=n;p.textContent='S/ '+Math.round(1000/n).toLocaleString('es-PE')}
 f.oninput=u;u()})();
 (()=>{
-  const nav=document.querySelector('nav.top .in');if(!nav)return;
+  const nav=document.querySelector('nav.top .strip');if(!nav)return;
   const links=[...nav.querySelectorAll('a[href^="#"]:not(.brand)')];
   const items=links.map(a=>({a,el:document.getElementById(a.getAttribute('href').slice(1))})).filter(x=>x.el);
   let cur=null,tick=false;
