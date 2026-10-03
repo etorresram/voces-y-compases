@@ -201,7 +201,11 @@ html{-webkit-text-size-adjust:100%}
 @media (max-width:820px){
   body{font-size:16px;padding-inline:14px}
   nav.top,.hero{margin-inline:-14px;padding-inline:14px}
-  nav.top a{padding:9px 12px}
+  nav.top{position:static}
+  html{scroll-padding-top:12px}
+  nav.top .in{flex-wrap:wrap;overflow:visible;gap:4px 6px}
+  nav.top b{flex:0 0 100%;margin:0 0 2px;font-size:1.05rem}
+  nav.top a{padding:7px 11px;background:var(--soft);font-size:.88rem}
   .hero{padding-top:28px}
   .hero .txt{padding-bottom:20px;gap:16px}
   .hero h1{font-size:clamp(2.2rem,10vw,3rem)}
