@@ -23,4 +23,5 @@ Formatos en blanco, sin datos personales, para usar en el piloto:
 - `Protocolo_de_denuncia_proteccion_de_menores.docx`: pasos, plazos, contactos y hoja de reporte ante un riesgo para un menor.
 - `Convenio_con_el_colegio.docx`: convenio de cooperación para el piloto, con plan de trabajo y lista de anexos.
 - `Acta_de_Asamblea_General.docx`: modelo de acta para el libro de actas, con hoja de asistencia.
+- `Acta_del_Consejo_Directivo.docx`: modelo de acta de sesión, con seguimiento de acuerdos.
 Revisar con un abogado antes de usar.
