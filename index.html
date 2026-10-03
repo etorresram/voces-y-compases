@@ -758,7 +758,7 @@ f.oninput=u;u()})();
     const l=found.a.offsetLeft-nav.clientWidth/2+found.a.clientWidth/2;
     try{nav.scrollTo({left:Math.max(0,l),behavior:'smooth'})}catch(e){nav.scrollLeft=Math.max(0,l)}
   }
-  window.addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(update)}},{passive:true});
+  window.addEventListener('scroll',()=>{if(!tick){tick=true;setTimeout(update,60)}},{passive:true});
   window.addEventListener('resize',update);
   update();
 })();
