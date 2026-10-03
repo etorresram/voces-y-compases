@@ -562,7 +562,7 @@ function calc(){
   $('leg').innerHTML=items.map(x=>`<li><span class="sw" style="background:${x[2]}"></span>${x[0]}<span class="v">${S(x[1])}</span></li>`).join('');
   const ing=alu*60*5;$('cupos').textContent=cup;$('cpc').textContent=S(tot/cup);$('ing').textContent=S(ing);$('fin').textContent=S(Math.max(0,tot-ing));
 }
-['c1','c2','c3','c4'].forEach(i=>$(i).oninput=calc);calc();
+['c1','c2','c3','c4','c5','c6'].forEach(i=>$(i).oninput=calc);calc();
 
 $('pitch').value='Estamos formando una asociación cultural sin fines de lucro para llevar música, canto, declamación y poesía a jóvenes de colegios nacionales. La preside Onelia Ardiles Carrasco, profesora de poesía en la Municipalidad de La Molina. Empezamos con un piloto de 6 meses: evaluamos el talento de cada joven, damos talleres gratuitos y organizamos muestras públicas y una plataforma en redes. Buscamos un colegio aliado, un espacio para los talleres y personas que quieran apoyar como docentes, voluntarios o donantes. ¿Conversamos?';
 $('copy').onclick=async()=>{
