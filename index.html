@@ -184,6 +184,55 @@ footer{padding-block:32px;color:var(--muted);font-size:.9rem;border-top:1px soli
   .panel .art{width:96px;height:96px}
   section{padding-block:40px}
 }
+
+/* móvil */
+html{-webkit-text-size-adjust:100%}
+@media (max-width:820px){
+  body{font-size:16px;padding-inline:14px}
+  nav.top,.hero{margin-inline:-14px;padding-inline:14px}
+  nav.top a{padding:9px 12px}
+  .hero{padding-top:28px}
+  .hero .txt{padding-bottom:20px;gap:16px}
+  .hero h1{font-size:clamp(2.2rem,10vw,3rem)}
+  .hero p{font-size:1.05rem}
+  .hero svg{max-width:340px;margin-inline:auto}
+  .btns .btn{flex:1 1 140px;text-align:center;padding:13px 14px}
+  section{padding-block:32px}
+  .head{margin-bottom:18px}
+  h2{font-size:1.65rem}
+  .lead{font-size:1rem}
+  .card{padding:16px}
+  .tab{padding:10px 14px}
+  .panel{gap:14px}
+  .panel dl{grid-template-columns:1fr;gap:0}
+  .panel dt{padding-top:10px}
+  .mo{padding:12px 4px;font-size:.95rem}
+  .step label{padding:14px 12px;grid-template-columns:28px 1fr;gap:10px}
+  .step input{width:24px;height:24px}
+  .fil button{padding:10px 16px}
+  .calc{padding:16px;gap:18px}
+  .ctl input[type=range]{height:32px}
+  .leg li{font-size:.95rem}
+  .leg .v{white-space:nowrap}
+  .pitch{padding:18px;border-radius:14px}
+  .org .row{gap:8px}
+  .role{padding:14px 10px}
+  .role.pres{padding:16px 10px}
+  .roleinfo{padding:14px}
+  /* tablas como tarjetas */
+  .tw{border:0;background:transparent;overflow:visible}
+  table{min-width:0;display:block}
+  thead{display:none}
+  tbody{display:grid;gap:10px}
+  tr{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 14px}
+  td{display:grid;grid-template-columns:104px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+  td:last-child{border-bottom:0}
+  td::before{content:attr(data-l);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+}
+@media (max-width:380px){
+  .route{grid-template-columns:repeat(2,1fr)}
+  .chip{font-size:.8rem}
+}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .fl{animation:float 5s ease-in-out infinite;transform-box:fill-box}
@@ -492,6 +541,7 @@ $('copy').onclick=async()=>{
   try{await navigator.clipboard.writeText(t.value);$('copied').textContent='Texto copiado'}
   catch(e){t.select();$('copied').textContent='Selecciona y copia con Ctrl+C'}
 };
+document.querySelectorAll('table').forEach(t=>{const h=[...t.querySelectorAll('th')].map(x=>x.textContent);t.querySelectorAll('tbody tr').forEach(r=>[...r.children].forEach((c,i)=>c.setAttribute('data-l',h[i]||'')))});
 </script>
 
 </html>
