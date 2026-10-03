@@ -18,4 +18,5 @@ contador.
 Formatos en blanco, sin datos personales, para usar en el piloto:
 - `Ficha_de_evaluacion_de_talentos.docx`: evaluación inicial y final de cada joven.
 - `Autorizacion_madre_padre_tutor.docx`: participación, datos, imagen y salud de menores.
+- `Evaluacion_del_piloto_por_el_colegio.docx`: ficha que llena el colegio al terminar el piloto.
 Revisar con un abogado antes de usar.
