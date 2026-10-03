@@ -253,7 +253,7 @@ html{-webkit-text-size-adjust:100%}
 <button class="mus" id="mus" aria-pressed="false" aria-label="Activar música criolla instrumental suave"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3v11.3A3.5 3.5 0 1010.5 17V8h6V3z"/></svg><span class="lbl">Música</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
 <nav class="top"><div class="in">
   <b>Voces y Compases</b>
-  <a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a>
+  <a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#ingresos">Ingresos</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -343,6 +343,20 @@ html{-webkit-text-size-adjust:100%}
   <div class="grid3" id="laws"></div>
 </section>
 
+<section id="ingresos">
+  <div class="head"><span class="eyebrow">Sostenibilidad</span><h2>Cómo se sostiene el proyecto</h2>
+  <p class="lead">Los talleres para los jóvenes son gratuitos. Para que el proyecto dure, la asociación combina varias fuentes de ingreso y paga honorarios justos a quienes dirigen, enseñan y coordinan. Lo que sobra se reinvierte en los fines; no se reparte.</p></div>
+  <div class="grid3">
+    <div class="card pillar"><div class="ic" style="background:var(--rosa)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><h3>Convenios con instituciones</h3><p>Municipalidades, colegios y universidades contratan o cofinancian talleres y programas culturales. Es la fuente más estable.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--teal)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H4zM8 21h8M12 16v5"/></svg></div><h3>Cursos abiertos con matrícula</h3><p>Poesía, declamación, oratoria y canto para público general, presenciales o virtuales, con cuota accesible. Subvencionan los talleres gratuitos.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--accent);color:var(--on-accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4M5 21h14"/></svg></div><h3>Presentaciones y eventos</h3><p>Recitales, veladas criollas, ceremonias y actividades de empresas e instituciones que contratan al elenco.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--sun);color:#1B1F3B"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12a4 4 0 014 4v12H8a4 4 0 01-4-4zM8 9h8M8 13h6"/></svg></div><h3>Publicaciones y contenido</h3><p>Antologías de poesía, audiolibros, grabaciones y videos del elenco, para vender o licenciar.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--rosa)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg></div><h3>Amigos de la asociación</h3><p>Aportes mensuales pequeños de familias, exalumnos y vecinos, y donaciones de empresas y particulares.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--teal)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><h3>Fondos concursables</h3><p>Ministerio de Cultura, municipalidades, fundaciones y cooperación internacional, para ampliar a más colegios.</p></div>
+  </div>
+  <p class="note"><b>Cómo se paga al equipo.</b> El estatuto prevé una Dirección Artística y Pedagógica a cargo de una persona con experiencia, con honorarios aprobados por la Asamblea según el presupuesto. Quienes enseñan y coordinan cobran por su trabajo efectivo a un valor razonable. Quien recibe el pago no vota sobre su propia retribución.</p>
+</section>
+
 <section id="presupuesto">
   <div class="head"><span class="eyebrow">Presupuesto referencial</span><h2>¿Cuánto cuesta el piloto?</h2>
   <p class="lead">Mueve los controles. Son supuestos de trabajo para conversar con aliados, no cotizaciones. Los talleres se dictan durante 20 semanas, de los meses 2 a 6.</p></div>
@@ -352,16 +366,18 @@ html{-webkit-text-size-adjust:100%}
       <div class="ctl"><label for="c2">Talleres por colegio <output id="o2"></output></label><input type="range" id="c2" min="1" max="6" value="3"></div>
       <div class="ctl"><label for="c3">Pago por hora docente (S/) <output id="o3"></output></label><input type="range" id="c3" min="20" max="80" step="5" value="40"></div>
       <div class="ctl"><label for="c4">Horas aportadas por voluntarios <output id="o4"></output></label><input type="range" id="c4" min="0" max="100" step="10" value="30"></div>
+      <div class="ctl"><label for="c5">Dirección artística y coordinación (S/ al mes) <output id="o5"></output></label><input type="range" id="c5" min="0" max="3000" step="100" value="1500"></div>
+      <div class="ctl"><label for="c6">Alumnos pagantes en cursos abiertos <output id="o6"></output></label><input type="range" id="c6" min="0" max="80" step="5" value="20"></div>
     </div>
     <div>
       <span class="eyebrow">Inversión estimada, 6 meses</span>
       <div class="total" id="tot"></div>
       <div class="stack" id="stack"></div>
       <ul class="leg" id="leg"></ul>
-      <div class="mini"><span>Cupos: <b id="cupos"></b></span><span>Costo por cupo: <b id="cpc"></b></span></div>
+      <div class="mini"><span>Cupos: <b id="cupos"></b></span><span>Costo por cupo: <b id="cpc"></b></span><span>Ingresos propios: <b id="ing"></b></span><span>Por financiar: <b id="fin"></b></span></div>
     </div>
   </div>
-  <p class="note">Cada taller se calcula con 2 horas semanales y un grupo de 20 jóvenes. El trámite legal (notaría, derechos registrales, libros) es un estimado único. Las horas de voluntariado se amparan en la Ley del Voluntariado y conviene registrarlas con un acuerdo escrito.
+  <p class="note">Cada taller se calcula con 2 horas semanales y un grupo de 20 jóvenes. Los alumnos pagantes aportan S/ 60 al mes durante 5 meses. El trámite legal (notaría, derechos registrales, libros) es un estimado único. Las horas de voluntariado se amparan en la Ley del Voluntariado y conviene registrarlas con un acuerdo escrito.
   <br><b>Fuentes posibles:</b> convenio con la Municipalidad de La Molina, aporte de los asociados, donaciones de empresas y particulares, fondos concursables del Ministerio de Cultura y cooperación internacional.</p>
 </section>
 
@@ -527,14 +543,15 @@ drawLaws('all');
 const S=n=>'S/ '+Math.round(n).toLocaleString('es-PE');
 const $=id=>document.getElementById(id);
 function calc(){
-  const col=+$('c1').value,tal=+$('c2').value,tar=+$('c3').value,vol=+$('c4').value;
-  $('o1').textContent=col;$('o2').textContent=tal;$('o3').textContent='S/ '+tar;$('o4').textContent=vol+'%';
+  const col=+$('c1').value,tal=+$('c2').value,tar=+$('c3').value,vol=+$('c4').value,dir=+$('c5').value,alu=+$('c6').value;
+  $('o1').textContent=col;$('o2').textContent=tal;$('o3').textContent='S/ '+tar;$('o4').textContent=vol+'%';$('o5').textContent='S/ '+dir.toLocaleString('es-PE');$('o6').textContent=alu;
   const horas=col*tal*2*20;
   const items=[
     ['Docentes',horas*tar*(1-vol/100),'var(--rosa)'],
+    ['Dirección artística y coordinación',dir*6,'var(--sun)'],
     ['Materiales e instrumentos',1200*col,'var(--teal)'],
     ['Constitución legal',2200,'var(--accent)'],
-    ['Difusión y redes',1500,'var(--sun)'],
+    ['Difusión y redes',1500,'var(--line)'],
     ['Muestras públicas',900*col,'var(--muted)']
   ];
   const sub=items.reduce((a,x)=>a+x[1],0);
@@ -543,7 +560,7 @@ function calc(){
   $('tot').textContent=S(tot);
   $('stack').innerHTML=items.map(x=>`<i style="flex:${x[1]};background:${x[2]}" title="${x[0]}"></i>`).join('');
   $('leg').innerHTML=items.map(x=>`<li><span class="sw" style="background:${x[2]}"></span>${x[0]}<span class="v">${S(x[1])}</span></li>`).join('');
-  $('cupos').textContent=cup;$('cpc').textContent=S(tot/cup);
+  const ing=alu*60*5;$('cupos').textContent=cup;$('cpc').textContent=S(tot/cup);$('ing').textContent=S(ing);$('fin').textContent=S(Math.max(0,tot-ing));
 }
 ['c1','c2','c3','c4'].forEach(i=>$(i).oninput=calc);calc();
 
