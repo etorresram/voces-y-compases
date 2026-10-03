@@ -62,6 +62,14 @@ nav.top a:hover{background:var(--soft);color:var(--ink)}
 .btn.ghost{background:transparent;color:var(--on-hero);border:1.5px solid rgba(255,255,255,.5)}
 .hero svg{width:100%;height:auto;display:block;min-width:0}
 
+.founder{display:flex;flex-direction:column;gap:2px;border-left:5px solid var(--sun);padding:4px 0 4px 16px}
+.founder span{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sun)}
+.founder b{font-family:var(--f-display);font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:800;line-height:1.1}
+.founder small{opacity:.85;font-size:.95rem}
+.nm{color:var(--rosa);font-weight:800}
+.role.pres{background:var(--accent);color:var(--on-accent);border-color:var(--accent);grid-column:1/-1}
+.role.pres span{color:inherit;opacity:.9;font-size:1.15rem;font-weight:700}
+.role.pres b{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sun)}
 /* tarjetas */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -101,7 +109,7 @@ nav.top a:hover{background:var(--soft);color:var(--ink)}
 .org .node{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;text-align:center;font-weight:700;min-width:0}
 .org .top{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .org .stem{width:2px;height:20px;background:var(--line)}
-.org .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;margin-top:0}
+.org .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;margin-top:0}
 .role{cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;border-radius:12px;background:var(--surface);border:1.5px solid var(--line);padding:12px 8px;min-width:0}
 .role b{font-family:var(--f-display)}
 .role span{color:var(--muted);font-size:.9rem}
@@ -171,7 +179,7 @@ footer{padding-block:32px;color:var(--muted);font-size:.9rem;border-top:1px soli
   .hero .wrap,.panel,.calc,.mv{grid-template-columns:1fr}
   .grid3,.next{grid-template-columns:1fr}
   .grid2{grid-template-columns:1fr}
-  .org .row{grid-template-columns:repeat(2,1fr)}
+  .org .row{grid-template-columns:1fr}
   .route{grid-template-columns:repeat(3,1fr)}
   .panel .art{width:96px;height:96px}
   section{padding-block:40px}
@@ -192,6 +200,7 @@ footer{padding-block:32px;color:var(--muted);font-size:.9rem;border-top:1px soli
     <span class="eyebrow" style="color:var(--sun)">Proyecto de asociación cultural sin fines de lucro · Lima, Perú</span>
     <h1>Que cada joven <em>encuentre</em> su voz.</h1>
     <p>Música, canto, declamación y coros para estudiantes de colegios nacionales. Primero se descubre el talento de cada joven, luego se entrena, y al final se le da un escenario, también en redes.</p>
+    <div class="founder"><span>Presidenta fundadora</span><b>Onelia Ardiles Carrasco</b><small>Profesora de poesía · Municipalidad de La Molina</small></div>
     <div class="chips"><span class="chip">Piloto de 6 meses</span><span class="chip">Colegios nacionales</span><span class="chip">Gratuito para el estudiante</span></div>
     <div class="btns"><a class="btn" href="#programa">Ver el programa</a><a class="btn ghost" href="#legal">Cómo se constituye</a></div>
   </div>
@@ -221,7 +230,7 @@ footer{padding-block:32px;color:var(--muted);font-size:.9rem;border-top:1px soli
 
 <section id="porque">
   <div class="head"><span class="eyebrow">Por qué existe</span><h2>El talento está en todos los barrios. Las oportunidades, no.</h2>
-  <p class="lead">Onelia Ardiles Carrasco dicta hoy cursos de poesía en la Municipalidad de La Molina. Desde esa experiencia propone una asociación que lleve la formación artística a jóvenes de bajos recursos, con un método simple y medible.</p></div>
+  <p class="lead"><b class="nm">Onelia Ardiles Carrasco</b> dicta hoy cursos de poesía en la Municipalidad de La Molina. Desde esa experiencia propone una asociación que lleve la formación artística a jóvenes de bajos recursos, con un método simple y medible.</p></div>
   <div class="grid3">
     <div class="card pillar"><div class="ic" style="background:var(--rosa)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div><h3>Descubrir</h3><p>Una evaluación inicial identifica los dones y las debilidades de cada joven, para que el trabajo parta de lo que ya sabe hacer.</p></div>
     <div class="card pillar"><div class="ic" style="background:var(--teal)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V8M12 8l-5 5M12 8l5 5M5 4h14"/></svg></div><h3>Formar</h3><p>Talleres semanales en el propio colegio con docentes y voluntarios con sensibilidad artística y vocación pedagógica.</p></div>
@@ -403,7 +412,7 @@ function showRole(i){
   [...roles.children].forEach((b,j)=>b.setAttribute('aria-pressed',j===i));
   ri.innerHTML=`<b>${ROLES[i].c}: ${ROLES[i].n}</b><p style="margin-top:4px">${ROLES[i].f}</p>`;
 }
-ROLES.forEach((r,i)=>{const b=document.createElement('button');b.className='role';b.innerHTML=`<b>${r.c}</b><span>${r.n}</span>`;b.onclick=()=>showRole(i);roles.appendChild(b)});
+ROLES.forEach((r,i)=>{const b=document.createElement('button');b.className='role'+(i===0?' pres':'');b.innerHTML=`<b>${r.c}</b><span>${r.n}</span>`;b.onclick=()=>showRole(i);roles.appendChild(b)});
 showRole(0);
 
 const STEPS=[
