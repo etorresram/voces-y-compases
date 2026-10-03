@@ -5,3 +5,5 @@
 # Excepción: plantillas en blanco, sin datos personales
 !plantillas/
 !plantillas/*.docx
+!documentos/
+!documentos/*.docx

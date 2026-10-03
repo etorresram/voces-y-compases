@@ -220,6 +220,23 @@ footer{padding-block:32px;color:var(--muted);font-size:.9rem;border-top:1px soli
 .cost td:last-child{text-align:right;white-space:nowrap}
 .per{font-family:var(--f-display);font-weight:800;font-size:2.4rem;color:var(--accent);font-variant-numeric:tabular-nums}
 @media (max-width:820px){.start{grid-template-columns:1fr}.cost{grid-template-columns:1fr}.cost table{display:table}.cost thead{display:table-header-group}.cost tbody{display:table-row-group}.cost tr{display:table-row;background:none;border:0;padding:0}.cost td{display:table-cell;padding:10px 12px;border-bottom:1px solid var(--line)}.cost td::before{content:none}}
+nav.top a.hl{background:var(--sun);color:#1B1F3B;font-weight:700}
+nav.top a.hl:hover{background:var(--sun);color:#1B1F3B;filter:brightness(1.05)}
+#documentos{border-bottom:1px solid var(--line)}
+.all{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.all .btn{background:var(--accent);color:var(--on-accent)}
+.all span{color:var(--muted);font-size:.95rem}
+.docs{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.doc{display:grid;grid-template-columns:40px 1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.doc.first{border:2px solid var(--sun)}
+.dn{width:36px;height:36px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.doc.first .dn{background:var(--sun);color:#1B1F3B}
+.dt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dd{color:var(--muted);font-size:.93rem}
+.tg{align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--rosa);margin-top:2px}
+.dl{display:flex;flex-direction:column;align-items:center;background:var(--accent);color:var(--on-accent);text-decoration:none;font-weight:700;border-radius:10px;padding:9px 16px;white-space:nowrap}
+.dl small{font-weight:600;opacity:.85;font-size:.72rem}
+@media (max-width:820px){.doc{grid-template-columns:36px 1fr}.dl{grid-column:1/-1;flex-direction:row;justify-content:center;gap:8px}}
 /* móvil */
 html{-webkit-text-size-adjust:100%}
 @media (max-width:820px){
@@ -277,7 +294,7 @@ html{-webkit-text-size-adjust:100%}
 <button class="mus" id="mus" aria-pressed="false" aria-label="Activar música criolla instrumental suave"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 3v11.3A3.5 3.5 0 1010.5 17V8h6V3z"/></svg><span class="lbl">Música</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>
 <nav class="top"><div class="in">
   <b>Voces y Compases</b>
-  <a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#ingresos">Ingresos</a><a href="#publico">Fondos públicos</a><a href="#arranque">Arranque</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a>
+  <a href="#documentos" class="hl">Documentos</a><a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#ingresos">Ingresos</a><a href="#publico">Fondos públicos</a><a href="#arranque">Arranque</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
@@ -312,6 +329,26 @@ html{-webkit-text-size-adjust:100%}
 </div></header>
 
 <main class="wrap">
+
+<section id="documentos">
+  <div class="head"><span class="eyebrow">Documentos</span><h2>Todo el proyecto para descargar</h2>
+  <p class="lead">Están en orden de importancia. Empieza por los dos primeros. Lo que aparece en amarillo con «completar» en rojo son datos que faltan: nombre definitivo, domicilio, DNI y montos.</p></div>
+  <div class="all"><a class="btn" href="Voces_y_Compases_todos_los_documentos.zip" download>Descargar los 12 documentos (.zip)</a><span>Se abren con Word, Pages o Google Docs.</span></div>
+  <ol class="docs">
+    <li class="doc first"><span class="dn">1</span><div class="dt"><b>El proyecto completo</b><span class="dd">Todo en un solo documento: justificación, programa, ruta de 6 meses, equipo, constitución, fondos y presupuesto.</span><span class="tg">Lee primero</span></div><a class="dl" href="documentos/01_Proyecto_Voces_y_Compases.docx" download>Descargar <small>Word · 46 KB</small></a></li>
+    <li class="doc first"><span class="dn">2</span><div class="dt"><b>Estatuto de la asociación</b><span class="dd">43 artículos, modelo de acta de constitución y lista de datos que faltan. Es el documento clave para ir a la notaría.</span><span class="tg">Lee primero</span></div><a class="dl" href="documentos/02_Estatuto_BORRADOR.docx" download>Descargar <small>Word · 44 KB</small></a></li>
+    <li class="doc"><span class="dn">3</span><div class="dt"><b>Carta a la Municipalidad de La Molina</b><span class="dd">Carta de presentación con un resumen de una página y notas para la presidenta.</span><span class="tg">Para presentar el proyecto</span></div><a class="dl" href="documentos/03_Carta_a_la_Municipalidad_de_La_Molina.docx" download>Descargar <small>Word · 40 KB</small></a></li>
+    <li class="doc"><span class="dn">4</span><div class="dt"><b>Cartas de intención</b><span class="dd">Dos modelos: una para la municipalidad y otra para un colegio nacional o la UGEL.</span><span class="tg">Para presentar el proyecto</span></div><a class="dl" href="documentos/04_Cartas_de_intencion_municipalidad_y_colegio.docx" download>Descargar <small>Word · 39 KB</small></a></li>
+    <li class="doc"><span class="dn">5</span><div class="dt"><b>Convenio con el colegio</b><span class="dd">Convenio de cooperación de 15 cláusulas con plan de trabajo del piloto.</span><span class="tg">Para presentar el proyecto</span></div><a class="dl" href="documentos/05_Convenio_con_el_colegio.docx" download>Descargar <small>Word · 40 KB</small></a></li>
+    <li class="doc"><span class="dn">6</span><div class="dt"><b>Ficha de evaluación de talentos</b><span class="dd">Evaluación inicial y final de cada joven, por especialidad, con escala de 1 a 4.</span><span class="tg">Para el piloto</span></div><a class="dl" href="documentos/06_Ficha_de_evaluacion_de_talentos.docx" download>Descargar <small>Word · 39 KB</small></a></li>
+    <li class="doc"><span class="dn">7</span><div class="dt"><b>Autorización de madre, padre o tutor</b><span class="dd">Participación, datos personales, imagen, salud y recojo del menor.</span><span class="tg">Para el piloto</span></div><a class="dl" href="documentos/07_Autorizacion_madre_padre_tutor.docx" download>Descargar <small>Word · 39 KB</small></a></li>
+    <li class="doc"><span class="dn">8</span><div class="dt"><b>Código de conducta</b><span class="dd">Reglas de trato, comunicación y reporte para docentes y voluntarios.</span><span class="tg">Para el piloto</span></div><a class="dl" href="documentos/08_Codigo_de_conducta.docx" download>Descargar <small>Word · 40 KB</small></a></li>
+    <li class="doc"><span class="dn">9</span><div class="dt"><b>Protocolo de denuncia</b><span class="dd">Qué hacer ante un riesgo para un menor: pasos, plazos, contactos y hoja de reporte.</span><span class="tg">Para el piloto</span></div><a class="dl" href="documentos/09_Protocolo_de_denuncia.docx" download>Descargar <small>Word · 41 KB</small></a></li>
+    <li class="doc"><span class="dn">10</span><div class="dt"><b>Evaluación del piloto por el colegio</b><span class="dd">Ficha que llena el colegio al terminar los 6 meses.</span><span class="tg">Para el piloto</span></div><a class="dl" href="documentos/10_Evaluacion_del_piloto_por_el_colegio.docx" download>Descargar <small>Word · 39 KB</small></a></li>
+    <li class="doc"><span class="dn">11</span><div class="dt"><b>Acta de Asamblea General</b><span class="dd">Modelo de acta con hoja de asistencia, para el libro de actas.</span><span class="tg">Para funcionar</span></div><a class="dl" href="documentos/11_Acta_de_Asamblea_General.docx" download>Descargar <small>Word · 39 KB</small></a></li>
+    <li class="doc"><span class="dn">12</span><div class="dt"><b>Acta del Consejo Directivo</b><span class="dd">Modelo de acta de sesión con seguimiento de acuerdos.</span><span class="tg">Para funcionar</span></div><a class="dl" href="documentos/12_Acta_del_Consejo_Directivo.docx" download>Descargar <small>Word · 39 KB</small></a></li>
+  </ol>
+</section>
 
 <section id="porque">
   <div class="head"><span class="eyebrow">Por qué existe</span><h2>El talento está en todos los barrios. Las oportunidades, no.</h2>

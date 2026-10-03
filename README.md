@@ -25,3 +25,8 @@ Formatos en blanco, sin datos personales, para usar en el piloto:
 - `Acta_de_Asamblea_General.docx`: modelo de acta para el libro de actas, con hoja de asistencia.
 - `Acta_del_Consejo_Directivo.docx`: modelo de acta de sesión, con seguimiento de acuerdos.
 Revisar con un abogado antes de usar.
+
+## Documentos (`documentos/`)
+Los 12 documentos de trabajo en orden de importancia, con los datos pendientes
+resaltados en amarillo («completar» en rojo), y el zip con todos. La página
+`index.html` los ofrece para descargar en la pestaña «Documentos».
