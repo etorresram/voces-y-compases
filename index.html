@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Voces y Compases</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: portada índigo con ilustración, luego secciones de lectura y herramientas interactivas (tabs, ruta, checklist, presupuesto). */
+:root{
+  --bg:#F5F4FA; --surface:#FFFFFF; --ink:#1B1F3B; --muted:#585D7C; --line:#DAD8EA;
+  --accent:#2B2F77; --on-accent:#FFFFFF; --hero:#2B2F77; --on-hero:#FFFFFF;
+  --sun:#F2A900; --rosa:#C4306B; --teal:#0F8B84; --soft:#ECEAF7;
+  --f-display:'Bricolage Grotesque','Trebuchet MS',sans-serif;
+  --f-body:'Nunito Sans','Segoe UI',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12132A; --surface:#1B1D3B; --ink:#EEEDF8; --muted:#A6A9C9; --line:#34376A;
+  --accent:#A9AEFF; --on-accent:#12132A; --hero:#1E2060; --on-hero:#FFFFFF;
+  --sun:#F7B91F; --rosa:#F0709F; --teal:#3CC6BD; --soft:#23265A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12132A; --surface:#1B1D3B; --ink:#EEEDF8; --muted:#A6A9C9; --line:#34376A;
+  --accent:#A9AEFF; --on-accent:#12132A; --hero:#1E2060; --on-hero:#FFFFFF;
+  --sun:#F7B91F; --rosa:#F0709F; --teal:#3CC6BD; --soft:#23265A; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;padding-inline:16px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0;max-width:65ch}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.wrap{max-width:1040px;margin-inline:auto}
+section{padding-block:56px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rosa)}
+.lead{color:var(--muted);font-size:1.1rem}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px}
+nav.top .in{max-width:1040px;margin:auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;align-items:center}
+nav.top b{font-family:var(--f-display);font-weight:800;margin-right:10px;white-space:nowrap}
+nav.top a{white-space:nowrap;text-decoration:none;font-size:.9rem;font-weight:600;color:var(--muted);padding:6px 10px;border-radius:99px}
+nav.top a:hover{background:var(--soft);color:var(--ink)}
+
+/* hero */
+.hero{background:var(--hero);color:var(--on-hero);margin-inline:-16px;padding:48px 16px 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:24px;align-items:end}
+.hero h1{font-size:clamp(2.6rem,7vw,4.8rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--sun)}
+.hero .txt{display:flex;flex-direction:column;gap:20px;padding-bottom:40px;min-width:0}
+.hero p{font-size:1.15rem;opacity:.92}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:4px 12px;font-size:.85rem;font-weight:600}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{background:var(--sun);color:#1B1F3B;border:0;border-radius:10px;padding:11px 18px;font-weight:700;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--on-hero);border:1.5px solid rgba(255,255,255,.5)}
+.hero svg{width:100%;height:auto;display:block;min-width:0}
+
+/* tarjetas */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid3>*,.grid2>*{min-width:0}
+.pillar .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;color:#fff}
+.pillar p{color:var(--muted);margin-top:6px}
+
+/* misión */
+.mv{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mv .card{background:var(--soft);border:0}
+.mv h3{margin-bottom:8px}
+
+/* tabs programa */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{background:var(--surface);border:1.5px solid var(--line);border-radius:99px;padding:8px 14px;font-weight:700;font-size:.92rem}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.panel{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start}
+.panel .art{width:140px;height:140px;border-radius:20px;display:grid;place-items:center;color:#fff}
+.panel dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:14px 0 0}
+.panel dt{font-weight:700;color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+.panel dd{margin:0}
+.tag{display:inline-block;background:var(--soft);border-radius:6px;padding:2px 8px;font-size:.78rem;font-weight:700;color:var(--rosa);margin-left:6px;vertical-align:middle}
+
+/* ruta 6 meses */
+.route{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px}
+.mo{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;font-family:var(--f-display);font-weight:700;position:relative}
+.mo small{display:block;font-family:var(--f-body);font-weight:600;color:var(--muted);font-size:.72rem}
+.mo[aria-selected="true"]{background:var(--sun);border-color:var(--sun);color:#1B1F3B}
+.mo[aria-selected="true"] small{color:#1B1F3B}
+.mo.done{border-color:var(--teal)}
+.moinfo ul{margin:10px 0 0;padding-left:20px;display:grid;gap:4px}
+.moinfo .big{font-family:var(--f-display);font-weight:800;font-size:1.5rem}
+
+/* organigrama */
+.org{display:flex;flex-direction:column;align-items:center;gap:0}
+.org .node{background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:10px 16px;text-align:center;font-weight:700;min-width:0}
+.org .top{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.org .stem{width:2px;height:20px;background:var(--line)}
+.org .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;width:100%;margin-top:0}
+.role{cursor:pointer;display:flex;flex-direction:column;gap:2px;align-items:center;border-radius:12px;background:var(--surface);border:1.5px solid var(--line);padding:12px 8px;min-width:0}
+.role b{font-family:var(--f-display)}
+.role span{color:var(--muted);font-size:.9rem}
+.role[aria-pressed="true"]{border-color:var(--rosa);box-shadow:0 0 0 3px color-mix(in srgb,var(--rosa) 25%,transparent)}
+.roleinfo{margin-top:14px;background:var(--soft);border-radius:12px;padding:16px 18px}
+.aseso{margin-top:12px;border-style:dashed;color:var(--muted);font-weight:600}
+
+/* checklist */
+.prog{height:12px;background:var(--soft);border-radius:99px;overflow:hidden;margin:6px 0 18px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--sun));width:0;transition:width .35s}
+.steps{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.step label{display:grid;grid-template-columns:24px 1fr;gap:12px;padding:14px 16px;cursor:pointer}
+.step input{width:20px;height:20px;accent-color:var(--teal);margin-top:2px}
+.step .t{font-weight:700}
+.step .who{font-size:.8rem;color:var(--rosa);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.step p{color:var(--muted);font-size:.95rem;margin-top:2px}
+.step input:checked~div .t{text-decoration:line-through;color:var(--muted)}
+.note{margin-top:18px;border-left:4px solid var(--sun);padding:10px 16px;background:var(--soft);border-radius:0 10px 10px 0;font-size:.95rem}
+
+/* normativa */
+.fil{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.fil button{background:var(--surface);border:1.5px solid var(--line);border-radius:99px;padding:6px 14px;font-weight:700}
+.fil button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.law{display:flex;flex-direction:column;gap:6px}
+.law .k{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.law h3{font-size:1.05rem}
+.law p{color:var(--muted);font-size:.95rem}
+
+/* presupuesto */
+.calc{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
+.calc>*{min-width:0}
+.ctl{display:grid;gap:4px;margin-bottom:16px}
+.ctl label{display:flex;justify-content:space-between;font-weight:700}
+.ctl output{color:var(--rosa);font-variant-numeric:tabular-nums}
+.ctl input[type=range]{width:100%;accent-color:var(--rosa)}
+.total{font-family:var(--f-display);font-weight:800;font-size:clamp(2.2rem,6vw,3.2rem);font-variant-numeric:tabular-nums;color:var(--accent)}
+.stack{display:flex;height:22px;border-radius:99px;overflow:hidden;margin:14px 0}
+.stack i{display:block;transition:flex .3s}
+.leg{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.leg li{display:flex;align-items:center;gap:10px;font-variant-numeric:tabular-nums}
+.leg .sw{width:12px;height:12px;border-radius:3px;flex:none}
+.leg .v{margin-left:auto;font-weight:700}
+.mini{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;color:var(--muted);font-size:.95rem}
+.mini b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* tabla */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td:last-child{font-weight:700;font-variant-numeric:tabular-nums}
+
+/* cierre */
+.next{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.next>*{min-width:0}
+.next .card h3{display:flex;align-items:center;gap:10px}
+.next .tl{font-family:var(--f-display);font-weight:800;color:var(--rosa)}
+.next ul{padding-left:18px;margin:10px 0 0;display:grid;gap:4px}
+.pitch{background:var(--hero);color:var(--on-hero);border-radius:18px;padding:28px;display:grid;gap:14px}
+.pitch p{opacity:.95;max-width:70ch}
+.pitch textarea{width:100%;min-height:150px;border-radius:10px;border:0;padding:12px;font:inherit;background:rgba(255,255,255,.1);color:var(--on-hero);resize:vertical}
+footer{padding-block:32px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:820px){
+  .hero .wrap,.panel,.calc,.mv{grid-template-columns:1fr}
+  .grid3,.next{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+  .org .row{grid-template-columns:repeat(2,1fr)}
+  .route{grid-template-columns:repeat(3,1fr)}
+  .panel .art{width:96px;height:96px}
+  section{padding-block:40px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.fl{animation:float 5s ease-in-out infinite;transform-box:fill-box}
+.fl2{animation-delay:-2s}.fl3{animation-delay:-3.5s}
+</style>
+
+<nav class="top"><div class="in">
+  <b>Voces y Compases</b>
+  <a href="#porque">Por qué</a><a href="#programa">Programa</a><a href="#ruta">6 meses</a><a href="#equipo">Equipo</a><a href="#legal">Constitución</a><a href="#marco">Marco legal</a><a href="#presupuesto">Presupuesto</a><a href="#cierre">Siguientes pasos</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="txt">
+    <span class="eyebrow" style="color:var(--sun)">Proyecto de asociación cultural sin fines de lucro · Lima, Perú</span>
+    <h1>Que cada joven <em>encuentre</em> su voz.</h1>
+    <p>Música, canto, declamación y coros para estudiantes de colegios nacionales. Primero se descubre el talento de cada joven, luego se entrena, y al final se le da un escenario, también en redes.</p>
+    <div class="chips"><span class="chip">Piloto de 6 meses</span><span class="chip">Colegios nacionales</span><span class="chip">Gratuito para el estudiante</span></div>
+    <div class="btns"><a class="btn" href="#programa">Ver el programa</a><a class="btn ghost" href="#legal">Cómo se constituye</a></div>
+  </div>
+  <svg viewBox="0 0 480 400" role="img" aria-label="Ilustración de una joven declamando, notas musicales, un libro de poemas y un sol andino">
+    <circle cx="300" cy="150" r="120" fill="#F2A900"/>
+    <circle cx="300" cy="150" r="92" fill="none" stroke="#C4306B" stroke-width="6" stroke-dasharray="3 14" stroke-linecap="round"/>
+    <g stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none"><path d="M0 120 Q120 90 240 120 T480 120"/><path d="M0 138 Q120 108 240 138 T480 138"/><path d="M0 156 Q120 126 240 156 T480 156"/><path d="M0 174 Q120 144 240 174 T480 174"/><path d="M0 192 Q120 162 240 192 T480 192"/></g>
+    <g class="fl" fill="#fff"><ellipse cx="70" cy="110" rx="14" ry="10" transform="rotate(-20 70 110)"/><rect x="80" y="62" width="4" height="50"/><path d="M84 62 q22 6 20 28 q-8 -14 -20 -14z"/></g>
+    <g class="fl fl2" fill="#3CC6BD"><ellipse cx="410" cy="70" rx="12" ry="9" transform="rotate(-20 410 70)"/><rect x="419" y="28" width="4" height="44"/><ellipse cx="450" cy="92" rx="12" ry="9" transform="rotate(-20 450 92)"/><rect x="459" y="50" width="4" height="44"/><rect x="419" y="28" width="44" height="7"/></g>
+    <g class="fl fl3" fill="#F0709F"><path d="M150 40 h46 v30 h-14 l-10 12 v-12 h-22z"/><text x="160" y="63" font-family="Georgia,serif" font-size="30" fill="#2B2F77" font-weight="700">“”</text></g>
+    <!-- joven -->
+    <path d="M150 400 Q150 270 230 262 Q310 270 310 400z" fill="#C4306B"/>
+    <path d="M200 262 L230 320 L260 262z" fill="#F2A900"/>
+    <rect x="215" y="228" width="30" height="40" rx="10" fill="#E5A57B"/>
+    <circle cx="230" cy="205" r="38" fill="#E5A57B"/>
+    <path d="M190 200 Q192 160 232 160 Q274 160 270 204 Q262 180 232 178 Q204 180 190 200z" fill="#1B1F3B"/>
+    <path d="M192 200 Q180 250 196 290 Q204 250 200 205z" fill="#1B1F3B"/>
+    <circle cx="218" cy="208" r="3.5" fill="#1B1F3B"/><circle cx="244" cy="208" r="3.5" fill="#1B1F3B"/>
+    <path d="M220 224 Q231 233 243 224" stroke="#8a2f2f" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M300 292 Q330 270 338 236" stroke="#E5A57B" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <!-- libro -->
+    <g transform="translate(60 300) rotate(-8)"><path d="M0 0 Q50 -14 100 0 V70 Q50 56 0 70z" fill="#fff"/><path d="M100 0 Q150 -14 200 0 V70 Q150 56 100 70z" fill="#ECEAF7"/><path d="M100 0 V70" stroke="#2B2F77" stroke-width="3"/><g stroke="#2B2F77" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M18 20 h62"/><path d="M18 32 h50"/><path d="M18 44 h58"/><path d="M122 20 h62"/><path d="M122 32 h46"/></g></g>
+  </svg>
+</div></header>
+
+<main class="wrap">
+
+<section id="porque">
+  <div class="head"><span class="eyebrow">Por qué existe</span><h2>El talento está en todos los barrios. Las oportunidades, no.</h2>
+  <p class="lead">Onelia Ardiles Carrasco dicta hoy cursos de poesía en la Municipalidad de La Molina. Desde esa experiencia propone una asociación que lleve la formación artística a jóvenes de bajos recursos, con un método simple y medible.</p></div>
+  <div class="grid3">
+    <div class="card pillar"><div class="ic" style="background:var(--rosa)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div><h3>Descubrir</h3><p>Una evaluación inicial identifica los dones y las debilidades de cada joven, para que el trabajo parta de lo que ya sabe hacer.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--teal)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V8M12 8l-5 5M12 8l5 5M5 4h14"/></svg></div><h3>Formar</h3><p>Talleres semanales en el propio colegio con docentes y voluntarios con sensibilidad artística y vocación pedagógica.</p></div>
+    <div class="card pillar"><div class="ic" style="background:var(--accent);color:var(--on-accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9z"/></svg></div><h3>Mostrar</h3><p>Muestras públicas y una plataforma en redes para que el talento joven tenga audiencia y se pueda conectar con nuevas oportunidades.</p></div>
+  </div>
+  <div class="mv" style="margin-top:16px">
+    <div class="card"><h3>Misión</h3><p>Promover la formación y difusión de las artes de la palabra y la música entre jóvenes de bajos recursos, mediante talleres gratuitos, acompañamiento y espacios para mostrar su talento.</p></div>
+    <div class="card"><h3>Visión</h3><p>Ser una red reconocida de escuelas de arte comunitario, con espacio propio, donde ningún joven con talento quede sin oportunidad por falta de recursos.</p></div>
+  </div>
+</section>
+
+<section id="programa">
+  <div class="head"><span class="eyebrow">Programa</span><h2>Seis especialidades, un mismo escenario</h2>
+  <p class="lead">Las cuatro primeras salen de los escritos de la fundadora. Poesía se propone por su trayectoria y se integra con declamación. Danza aparece en su idea inicial y queda por confirmar.</p></div>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="card panel" id="panel" role="tabpanel"></div>
+</section>
+
+<section id="ruta">
+  <div class="head"><span class="eyebrow">Piloto</span><h2>Seis meses para ver resultados</h2>
+  <p class="lead">La propuesta fija un plazo de 6 meses para encontrar un resultado. Toca cada mes para ver qué se hace y qué debe quedar listo.</p></div>
+  <div class="route" id="route" role="tablist"></div>
+  <div class="card moinfo" id="moinfo"></div>
+</section>
+
+<section id="equipo">
+  <div class="head"><span class="eyebrow">Organización</span><h2>Quiénes la dirigen</h2>
+  <p class="lead">Estructura típica de una asociación civil: una asamblea de asociados y un consejo directivo. Toca un cargo para ver sus funciones.</p></div>
+  <div class="org">
+    <div class="node top">Asamblea General de asociados</div><div class="stem"></div>
+    <div class="row" id="roles"></div>
+    <div class="node aseso">Asesor: Erick Torres · apoyo técnico, fuera del consejo directivo</div>
+  </div>
+  <div class="roleinfo" id="roleinfo"></div>
+</section>
+
+<section id="legal">
+  <div class="head"><span class="eyebrow">Constitución</span><h2>De la idea a la persona jurídica</h2>
+  <p class="lead">En el Perú, lo que se conoce como ONG es legalmente una <b>asociación civil sin fines de lucro</b>. Marca cada paso cuando lo completen; el avance queda guardado en este navegador.</p></div>
+  <div><div style="display:flex;justify-content:space-between;font-weight:700"><span>Avance</span><span id="pct">0%</span></div>
+  <div class="prog"><i id="bar"></i></div></div>
+  <ol class="steps" id="steps"></ol>
+  <p class="note"><b>Verificar antes de ejecutar.</b> Este esquema resume el procedimiento general. Requisitos, formatos y costos cambian; confírmenlos con un notario, un contador y los portales de SUNARP, SUNAT y APCI. Los nombres de las normas deben revisarse en su versión vigente.</p>
+</section>
+
+<section id="marco">
+  <div class="head"><span class="eyebrow">Marco institucional</span><h2>Normas que sostienen el proyecto</h2></div>
+  <div class="fil" id="fil"><button data-f="all" aria-pressed="true">Todo</button><button data-f="Perú" aria-pressed="false">Perú</button><button data-f="Internacional" aria-pressed="false">Internacional</button></div>
+  <div class="grid3" id="laws"></div>
+</section>
+
+<section id="presupuesto">
+  <div class="head"><span class="eyebrow">Presupuesto referencial</span><h2>¿Cuánto cuesta el piloto?</h2>
+  <p class="lead">Mueve los controles. Son supuestos de trabajo para conversar con aliados, no cotizaciones. Los talleres se dictan durante 20 semanas, de los meses 2 a 6.</p></div>
+  <div class="calc card">
+    <div>
+      <div class="ctl"><label for="c1">Colegios participantes <output id="o1"></output></label><input type="range" id="c1" min="1" max="4" value="2"></div>
+      <div class="ctl"><label for="c2">Talleres por colegio <output id="o2"></output></label><input type="range" id="c2" min="1" max="6" value="3"></div>
+      <div class="ctl"><label for="c3">Pago por hora docente (S/) <output id="o3"></output></label><input type="range" id="c3" min="20" max="80" step="5" value="40"></div>
+      <div class="ctl"><label for="c4">Horas aportadas por voluntarios <output id="o4"></output></label><input type="range" id="c4" min="0" max="100" step="10" value="30"></div>
+    </div>
+    <div>
+      <span class="eyebrow">Inversión estimada, 6 meses</span>
+      <div class="total" id="tot"></div>
+      <div class="stack" id="stack"></div>
+      <ul class="leg" id="leg"></ul>
+      <div class="mini"><span>Cupos: <b id="cupos"></b></span><span>Costo por cupo: <b id="cpc"></b></span></div>
+    </div>
+  </div>
+  <p class="note">Cada taller se calcula con 2 horas semanales y un grupo de 20 jóvenes. El trámite legal (notaría, derechos registrales, libros) es un estimado único. Las horas de voluntariado se amparan en la Ley del Voluntariado y conviene registrarlas con un acuerdo escrito.
+  <br><b>Fuentes posibles:</b> convenio con la Municipalidad de La Molina, aporte de los asociados, donaciones de empresas y particulares, fondos concursables del Ministerio de Cultura y cooperación internacional.</p>
+</section>
+
+<section id="medir">
+  <div class="head"><span class="eyebrow">Resultados</span><h2>Cómo sabremos si funcionó</h2>
+  <p class="lead">Metas propuestas para el piloto con 2 colegios y 3 talleres cada uno. Se ajustan al firmar los convenios.</p></div>
+  <div class="tw"><table>
+    <thead><tr><th>Objetivo</th><th>Indicador</th><th>Meta a 6 meses</th></tr></thead>
+    <tbody>
+      <tr><td>Conocer el talento de cada joven</td><td>Jóvenes con ficha inicial de dones y debilidades</td><td>120</td></tr>
+      <tr><td>Mantener la asistencia</td><td>Asistencia promedio a los talleres</td><td>80%</td></tr>
+      <tr><td>Mejorar el desempeño</td><td>Participantes que avanzan al menos un nivel en la rúbrica final</td><td>70%</td></tr>
+      <tr><td>Dar escenario</td><td>Muestras públicas realizadas</td><td>2 por colegio</td></tr>
+      <tr><td>Presencia en redes</td><td>Piezas publicadas con autorización de familias</td><td>40</td></tr>
+      <tr><td>Consolidar la asociación</td><td>Constitución inscrita y convenios firmados</td><td>100%</td></tr>
+    </tbody></table></div>
+</section>
+
+<section id="riesgos">
+  <div class="head"><span class="eyebrow">Cuidados</span><h2>Riesgos que se atienden desde el inicio</h2></div>
+  <div class="grid2">
+    <div class="card"><h3>Protección de menores</h3><p style="margin-top:6px;color:var(--muted)">Código de conducta, certificado de antecedentes de todo docente y voluntario, y talleres siempre en espacios abiertos o con dos adultos presentes.</p></div>
+    <div class="card"><h3>Imagen y datos en redes</h3><p style="margin-top:6px;color:var(--muted)">Autorización firmada por madre, padre o tutor antes de publicar fotos, audios o videos de menores, conforme a la ley de protección de datos personales.</p></div>
+    <div class="card"><h3>Dependencia de pocas personas</h3><p style="margin-top:6px;color:var(--muted)">Estatuto con reglas de reemplazo, actas al día y registro de acuerdos para que la asociación siga si alguien deja su cargo.</p></div>
+    <div class="card"><h3>Falta de fondos</h3><p style="margin-top:6px;color:var(--muted)">Empezar con un colegio y un espacio prestado. Ampliar solo cuando haya convenio o financiamiento confirmado.</p></div>
+  </div>
+</section>
+
+<section id="cierre">
+  <div class="head"><span class="eyebrow">Siguientes pasos</span><h2>Lo que sigue</h2></div>
+  <div class="next">
+    <div class="card"><h3><span class="tl">30 días</span></h3><ul><li>Reunión fundadora y acuerdo de nombre</li><li>Búsqueda de nombre en SUNARP</li><li>Redactar el estatuto</li><li>Carta de intención a un colegio y a la Municipalidad</li></ul></div>
+    <div class="card"><h3><span class="tl">60 días</span></h3><ul><li>Escritura pública e inscripción</li><li>RUC y solicitud de exoneración</li><li>Ficha de evaluación de talentos lista</li><li>Reclutar docentes y voluntarios</li></ul></div>
+    <div class="card"><h3><span class="tl">90 días</span></h3><ul><li>Convenio firmado con el primer colegio</li><li>Inicio de talleres</li><li>Cuentas de redes de la asociación</li><li>Primer informe a asociados</li></ul></div>
+  </div>
+  <div class="pitch" style="margin-top:24px">
+    <h3 style="font-size:1.4rem">Texto para compartir</h3>
+    <p>Edítalo y cópialo para WhatsApp o correo.</p>
+    <textarea id="pitch" aria-label="Texto para compartir"></textarea>
+    <div class="btns"><button class="btn" id="copy">Copiar texto</button><span id="copied" aria-live="polite" style="align-self:center"></span></div>
+  </div>
+</section>
+
+<section style="padding-block:0 40px">
+  <div class="head"><span class="eyebrow">Por completar</span><h2 style="font-size:1.4rem">Decisiones pendientes de los fundadores</h2></div>
+  <ul style="margin:0;padding-left:20px;display:grid;gap:4px;color:var(--muted)">
+    <li>Nombre definitivo. «Voces y Compases» es una propuesta y debe estar libre en SUNARP.</li>
+    <li>Si se incluye Danza desde el piloto o en una segunda etapa.</li>
+    <li>Distrito y colegios del piloto. La Molina es el vínculo actual; los colegios podrían estar en distritos vecinos.</li>
+    <li>Domicilio legal y aporte inicial de los asociados.</li>
+    <li>Si el asesor será asociado o colaborador externo.</li>
+  </ul>
+</section>
+</main>
+
+<footer><div class="wrap">Proyecto de asociación cultural elaborado a partir del documento «Formas de desarrollo de la ONG». Borrador del 3 de octubre de 2026 para discusión de los fundadores. No constituye asesoría legal ni tributaria.</div></footer>
+
+<script>
+const ICONS={
+ inst:'<svg width="84" height="84" viewBox="0 0 84 84" fill="currentColor"><rect x="8" y="46" width="9" height="28" rx="4"/><rect x="21" y="36" width="9" height="38" rx="4"/><rect x="34" y="26" width="9" height="48" rx="4"/><rect x="47" y="16" width="9" height="58" rx="4"/><rect x="60" y="8" width="9" height="66" rx="4"/><rect x="6" y="52" width="66" height="5" opacity=".5"/></svg>',
+ canto:'<svg width="84" height="84" viewBox="0 0 84 84" fill="currentColor"><ellipse cx="30" cy="62" rx="14" ry="10" transform="rotate(-20 30 62)"/><rect x="40" y="14" width="6" height="48"/><path d="M46 14 q26 8 22 34 q-6 -18 -22 -20z"/></svg>',
+ decl:'<svg width="84" height="84" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"><rect x="31" y="8" width="22" height="38" rx="11" fill="currentColor"/><path d="M20 38a22 22 0 0044 0M42 60v16M30 76h24"/></svg>',
+ coro:'<svg width="84" height="84" viewBox="0 0 84 84" fill="currentColor"><circle cx="42" cy="24" r="11"/><circle cx="18" cy="34" r="9"/><circle cx="66" cy="34" r="9"/><path d="M24 70q0-26 18-26t18 26zM2 70q0-20 16-20t14 20zM82 70q0-20-16-20t-14 20z"/></svg>',
+ poesia:'<svg width="84" height="84" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"><path d="M8 18q17-6 34 4v50q-17-10-34-4zM76 18q-17-6-34 4v50q17-10 34-4z"/><path d="M18 34h14M18 46h14M52 34h14M52 46h14" stroke-width="4"/></svg>',
+ danza:'<svg width="84" height="84" viewBox="0 0 84 84" fill="currentColor"><circle cx="42" cy="14" r="9"/><path d="M42 26l10 20-6 4 20 26H20l20-26-6-4z"/></svg>'
+};
+const AREAS=[
+ {id:'inst',n:'Instrumentos',c:'var(--teal)',d:'Aprender a tocar un instrumento desde cero o mejorar el que ya se toca: percusión, vientos andinos, cuerdas y teclado, según lo que cada colegio pueda disponer.',e:'Desde 11 años',f:'2 h por semana, grupos de hasta 20',r:'Un repertorio de 3 piezas tocadas en público',tag:''},
+ {id:'canto',n:'Canto',c:'var(--rosa)',d:'Técnica vocal básica: respiración, afinación y cuidado de la voz. Incluye canto individual y preparación para solistas.',e:'Desde 11 años',f:'2 h por semana, grupos de hasta 20',r:'Cada joven canta una pieza solista o a dúo',tag:''},
+ {id:'decl',n:'Declamación y oratoria',c:'var(--accent)',d:'Dicción, volumen, postura y manejo del miedo escénico. La oratoria sirve para exponer, debatir y postular a becas o empleos.',e:'Desde 11 años',f:'2 h por semana, grupos de hasta 20',r:'Una declamación y un discurso de 3 minutos',tag:''},
+ {id:'coro',n:'Coros',c:'var(--sun)',d:'Coros musicales por colegio y también formación individual para quienes quieran destacar con voz propia dentro del grupo.',e:'Todas las edades escolares',f:'2 h por semana, hasta 30 voces',r:'Un coro estable por colegio con 4 canciones',tag:''},
+ {id:'poesia',n:'Poesía',c:'var(--rosa)',d:'Lectura y escritura de poesía, con vínculo directo a la experiencia de la fundadora en la Municipalidad de La Molina. Cada joven escribe sus propios versos y los lee en voz alta.',e:'Desde 12 años',f:'2 h por semana, grupos de hasta 20',r:'Un cuaderno colectivo de poemas publicado en versión digital',tag:'propuesta'},
+ {id:'danza',n:'Danza',c:'var(--teal)',d:'Danzas tradicionales peruanas y expresión corporal. Se menciona en la idea original y se sugiere confirmarla o dejarla para una segunda etapa.',e:'Desde 11 años',f:'2 h por semana, grupos de hasta 25',r:'Una coreografía en la muestra final',tag:'por confirmar'}
+];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+function showArea(i){
+  const a=AREAS[i];
+  [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+  panel.innerHTML=`<div class="art" style="background:${a.c};${a.id==='coro'?'color:#1B1F3B':''}">${ICONS[a.id]}</div><div><h3>${a.n}${a.tag?`<span class="tag">${a.tag}</span>`:''}</h3><p style="margin-top:8px">${a.d}</p><dl><dt>Edad</dt><dd>${a.e}</dd><dt>Ritmo</dt><dd>${a.f}</dd><dt>Resultado</dt><dd>${a.r}</dd></dl></div>`;
+}
+AREAS.forEach((a,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=a.n;b.onclick=()=>showArea(i);tabs.appendChild(b)});
+showArea(0);
+
+const MESES=[
+ {t:'Cimientos',l:['Asamblea fundacional y estatuto aprobado','Nombre reservado en SUNARP','Cartas de intención con colegio y Municipalidad','Diseño de la ficha de evaluación de talentos'],m:'Estatuto firmado'},
+ {t:'Evaluación de talentos',l:['Audiciones y charlas sin eliminar a nadie','Ficha de dones y debilidades de cada joven','Selección de docentes y voluntarios con antecedentes','Escritura pública en trámite'],m:'Línea de base de 120 jóvenes'},
+ {t:'Talleres en marcha',l:['Inicio de los talleres semanales','Autorizaciones de familias firmadas','Registro de asistencia','Asociación inscrita y con RUC'],m:'Talleres funcionando'},
+ {t:'Práctica y refuerzo',l:['Trabajo individual sobre las debilidades detectadas','Coros conformados','Primeras grabaciones de práctica','Solicitud de exoneración tributaria presentada'],m:'Coros estables'},
+ {t:'Primera muestra',l:['Muestra pública en cada colegio','Registro en video con autorización','Invitación a familias y autoridades locales','Lanzamiento de cuentas en redes'],m:'2 muestras realizadas'},
+ {t:'Plataforma y balance',l:['Publicación de lo mejor del semestre en redes','Evaluación final con la misma ficha inicial','Informe a asociados y aliados','Decisión de ampliar a más colegios'],m:'Informe del piloto'}
+];
+const route=document.getElementById('route'),moinfo=document.getElementById('moinfo');
+function showMes(i){
+  [...route.children].forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.classList.toggle('done',j<i)});
+  const m=MESES[i];
+  moinfo.innerHTML=`<div class="big">Mes ${i+1} · ${m.t}</div><ul>${m.l.map(x=>`<li>${x}</li>`).join('')}</ul><p style="margin-top:12px"><b>Debe quedar listo:</b> ${m.m}</p>`;
+}
+MESES.forEach((m,i)=>{const b=document.createElement('button');b.className='mo';b.role='tab';b.innerHTML=`Mes ${i+1}<small>${m.t}</small>`;b.onclick=()=>showMes(i);route.appendChild(b)});
+showMes(0);
+
+const ROLES=[
+ {c:'Presidenta',n:'Onelia Ardiles Carrasco',f:'Representa legalmente a la asociación, convoca y preside las asambleas y firma los convenios con colegios y Municipalidad. Es la voz pública del proyecto.'},
+ {c:'Secretario',n:'Mihael Arce',f:'Lleva el libro de actas y el registro de asociados, redacta la correspondencia y archiva convenios y autorizaciones de las familias.'},
+ {c:'Tesorera',n:'Muriel Cabrera',f:'Custodia los fondos, lleva los libros contables con apoyo de un contador, rinde cuentas a la asamblea y presenta las declaraciones ante SUNAT.'},
+ {c:'Vocal',n:'Erick Triviños',f:'Coordina la comisión que se le asigne, por ejemplo talleres o difusión, y reemplaza a un miembro del consejo cuando haga falta.'}
+];
+const roles=document.getElementById('roles'),ri=document.getElementById('roleinfo');
+function showRole(i){
+  [...roles.children].forEach((b,j)=>b.setAttribute('aria-pressed',j===i));
+  ri.innerHTML=`<b>${ROLES[i].c}: ${ROLES[i].n}</b><p style="margin-top:4px">${ROLES[i].f}</p>`;
+}
+ROLES.forEach((r,i)=>{const b=document.createElement('button');b.className='role';b.innerHTML=`<b>${r.c}</b><span>${r.n}</span>`;b.onclick=()=>showRole(i);roles.appendChild(b)});
+showRole(0);
+
+const STEPS=[
+ ['Asamblea fundacional','Fundadores','Acta de constitución, aprobación del estatuto y elección del consejo directivo. El estatuto define fines, órganos, derechos de los asociados y destino del patrimonio si la asociación se disuelve.'],
+ ['Búsqueda y reserva de nombre','SUNARP','Verificar que el nombre no esté en uso en el Índice Nacional de Personas Jurídicas y reservarlo.'],
+ ['Escritura pública','Notaría','El acta y el estatuto se elevan a escritura pública (Código Civil, libro de personas jurídicas). Confirmar con la notaría si hay alternativa digital vigente.'],
+ ['Inscripción en SUNARP','SUNARP','Registro de Personas Jurídicas, libro de asociaciones. La asociación existe como persona jurídica desde su inscripción.'],
+ ['RUC y régimen','SUNAT','Obtener el RUC. Definir con un contador qué comprobantes emitir y qué libros contables llevar.'],
+ ['Exoneración del impuesto a la renta','SUNAT','Solicitar la inscripción en el registro de entidades exoneradas. Las asociaciones con fines educativos y culturales pueden acceder si no reparten utilidades entre los asociados.'],
+ ['Libros de actas y de asociados','Notaría','Legalizar los libros donde constarán asambleas, acuerdos y miembros.'],
+ ['Convenios con colegios y Municipalidad','Presidenta','Convenio marco con la UGEL o el colegio y carta de apoyo de la Municipalidad de La Molina para uso de espacios y difusión.'],
+ ['Política de protección de menores','Consejo directivo','Código de conducta, certificados de antecedentes del personal y protocolo de denuncia.'],
+ ['Autorizaciones de datos e imagen','Secretario','Formato para madres, padres o tutores, según la ley de protección de datos personales.'],
+ ['Donaciones y cooperación','Tesorera','Si habrá cooperación técnica internacional o donaciones del exterior, revisar el registro correspondiente en APCI. Para que los donantes deduzcan impuestos, consultar la calificación de donatarias en SUNAT.']
+];
+const steps=document.getElementById('steps'),bar=document.getElementById('bar'),pct=document.getElementById('pct');
+let saved=[];try{saved=JSON.parse(localStorage.getItem('vyc_steps')||'[]')}catch(e){}
+function upd(){
+  const n=steps.querySelectorAll('input:checked').length,p=Math.round(n/STEPS.length*100);
+  bar.style.width=p+'%';pct.textContent=`${n} de ${STEPS.length} · ${p}%`;
+  try{localStorage.setItem('vyc_steps',JSON.stringify([...steps.querySelectorAll('input')].map(x=>x.checked)))}catch(e){}
+}
+STEPS.forEach((s,i)=>{
+  const li=document.createElement('li');li.className='step';
+  li.innerHTML=`<label><input type="checkbox" id="st${i}" ${saved[i]?'checked':''}><div><span class="who">${s[1]}</span><div class="t">${s[0]}</div><p>${s[2]}</p></div></label>`;
+  li.querySelector('input').onchange=upd;steps.appendChild(li);
+});
+upd();
+
+const LAWS=[
+ ['Perú','Constitución Política','Reconoce el derecho de asociarse y fundar fundaciones sin fines lucrativos, y la libertad de creación artística.'],
+ ['Perú','Código Civil, libro I','Regula la asociación: estatuto, asamblea, consejo directivo e inscripción como requisito de existencia.'],
+ ['Perú','Ley General de Educación','Reconoce el aporte de la sociedad civil a la educación y a la formación artística y cultural.'],
+ ['Perú','Ley del Ministerio de Cultura','Fomenta la creación artística y la participación cultural. Abre la puerta a fondos y reconocimiento.'],
+ ['Perú','Ley de la APCI','Regula la cooperación técnica internacional y el registro de las ONG de desarrollo.'],
+ ['Perú','Ley del Voluntariado','Reconoce el trabajo voluntario y pide acuerdos escritos con la organización.'],
+ ['Perú','Protección de datos personales','Exige consentimiento informado, y más cuidado todavía con los datos de menores.'],
+ ['Perú','Ley de Impuesto a la Renta','Contempla la exoneración para entidades sin fines de lucro culturales y educativas, y la deducción de donaciones.'],
+ ['Internacional','Convención sobre los Derechos del Niño','El artículo 31 reconoce el derecho de niñas, niños y adolescentes a participar en la vida cultural y artística.'],
+ ['Internacional','Objetivo de Desarrollo Sostenible 4','Educación de calidad. La meta 4.7 incluye la apreciación de la diversidad cultural.'],
+ ['Internacional','Objetivo de Desarrollo Sostenible 10','Reducción de desigualdades: acceso a oportunidades sin importar el origen o el ingreso.'],
+ ['Internacional','Convención UNESCO 2005','Protección y promoción de la diversidad de las expresiones culturales.']
+];
+const laws=document.getElementById('laws');
+function drawLaws(f){
+  laws.innerHTML=LAWS.filter(l=>f==='all'||l[0]===f).map(l=>`<div class="card law"><span class="k">${l[0]}</span><h3>${l[1]}</h3><p>${l[2]}</p></div>`).join('');
+}
+document.querySelectorAll('#fil button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#fil button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawLaws(b.dataset.f)});
+drawLaws('all');
+
+const S=n=>'S/ '+Math.round(n).toLocaleString('es-PE');
+const $=id=>document.getElementById(id);
+function calc(){
+  const col=+$('c1').value,tal=+$('c2').value,tar=+$('c3').value,vol=+$('c4').value;
+  $('o1').textContent=col;$('o2').textContent=tal;$('o3').textContent='S/ '+tar;$('o4').textContent=vol+'%';
+  const horas=col*tal*2*20;
+  const items=[
+    ['Docentes',horas*tar*(1-vol/100),'var(--rosa)'],
+    ['Materiales e instrumentos',1200*col,'var(--teal)'],
+    ['Constitución legal',2200,'var(--accent)'],
+    ['Difusión y redes',1500,'var(--sun)'],
+    ['Muestras públicas',900*col,'var(--muted)']
+  ];
+  const sub=items.reduce((a,x)=>a+x[1],0);
+  items.push(['Imprevistos (10%)',sub*.1,'var(--line)']);
+  const tot=sub*1.1,cup=col*tal*20;
+  $('tot').textContent=S(tot);
+  $('stack').innerHTML=items.map(x=>`<i style="flex:${x[1]};background:${x[2]}" title="${x[0]}"></i>`).join('');
+  $('leg').innerHTML=items.map(x=>`<li><span class="sw" style="background:${x[2]}"></span>${x[0]}<span class="v">${S(x[1])}</span></li>`).join('');
+  $('cupos').textContent=cup;$('cpc').textContent=S(tot/cup);
+}
+['c1','c2','c3','c4'].forEach(i=>$(i).oninput=calc);calc();
+
+$('pitch').value='Estamos formando una asociación cultural sin fines de lucro para llevar música, canto, declamación y poesía a jóvenes de colegios nacionales. La preside Onelia Ardiles Carrasco, profesora de poesía en la Municipalidad de La Molina. Empezamos con un piloto de 6 meses: evaluamos el talento de cada joven, damos talleres gratuitos y organizamos muestras públicas y una plataforma en redes. Buscamos un colegio aliado, un espacio para los talleres y personas que quieran apoyar como docentes, voluntarios o donantes. ¿Conversamos?';
+$('copy').onclick=async()=>{
+  const t=$('pitch');
+  try{await navigator.clipboard.writeText(t.value);$('copied').textContent='Texto copiado'}
+  catch(e){t.select();$('copied').textContent='Selecciona y copia con Ctrl+C'}
+};
+</script>
+
+</html>
